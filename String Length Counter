@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String Length Counter</title>
+</head>
+<body>
+    <h2>String Length Counter with PHP</h2>
+    <form method="post">
+        <label for="inputString">Enter a string:</label>
+        <input type="text" id="inputString" name="inputString" required><br><br>
+        <input type="submit" value="Count Length">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $inputString = $_POST['inputString'];
+
+        // Calculate the length of the string
+        $length = strlen($inputString);
+
+        echo "<p>The length of the string '$inputString' is: $length</p>";
+    }
+    ?>
+</body>
+</html>

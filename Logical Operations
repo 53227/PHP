@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logical Operations</title>
+</head>
+<body>
+    <h2>Logical Operations with PHP</h2>
+    <form method="post">
+        <label for="input1">Input 1 (true/false):</label>
+        <input type="text" id="input1" name="input1" required><br><br>
+
+        <label for="input2">Input 2 (true/false):</label>
+        <input type="text" id="input2" name="input2" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $input1 = filter_var($_POST['input1'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+        $input2 = filter_var($_POST['input2'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+
+        if ($input1 === null || $input2 === null) {
+            echo "<p>Please enter valid boolean values (true or false).</p>";
+        } else {
+            $andResult = $input1 && $input2;
+            $orResult = $input1 || $input2;
+            $notInput1 = !$input1;
+            $notInput2 = !$input2;
+
+            echo "<p>Input 1: " . ($input1 ? "true" : "false") . "</p>";
+            echo "<p>Input 2: " . ($input2 ? "true" : "false") . "</p>";
+            echo "<p>AND Operation: " . ($andResult ? "true" : "false") . "</p>";
+            echo "<p>OR Operation: " . ($orResult ? "true" : "false") . "</p>";
+            echo "<p>NOT Input 1: " . ($notInput1 ? "true" : "false") . "</p>";
+            echo "<p>NOT Input 2: " . ($notInput2 ? "true" : "false") . "</p>";
+        }
+    }
+    ?>
+</body>
+</html>

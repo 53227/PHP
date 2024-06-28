@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Encryption</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        textarea, input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Message Encryption</h1>
+    <form method="post" action="">
+        <textarea name="message" placeholder="Enter your message" required></textarea><br>
+        <input type="text" name="key" placeholder="Enter your key" required /><br>
+        <button type="submit" name="encrypt">Encrypt</button>
+        <button type="submit" name="decrypt">Decrypt</button>
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $message = $_POST['message'];
+        $key = $_POST['key'];
+        $method = 'AES-256-CBC';
+        $iv = substr(hash('sha256', 'iv'), 0, 16); // Initialization vector
+
+        if (isset($_POST['encrypt'])) {
+            $encryptedMessage = openssl_encrypt($message, $method, $key, 0, $iv);
+            echo "<h2>Encrypted Message: $encryptedMessage</h2>";
+        }
+
+        if (isset($_POST['decrypt'])) {
+            $decryptedMessage = openssl_decrypt($message, $method, $key, 0, $iv);
+            echo "<h2>Decrypted Message: $decryptedMessage</h2>";
+        }
+    }
+    ?>
+</body>
+</html>

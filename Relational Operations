@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Relational Operations</title>
+</head>
+<body>
+    <h2>Relational Operations with PHP</h2>
+    <form method="post">
+        <label for="input1">Input 1 (number):</label>
+        <input type="number" id="input1" name="input1" required><br><br>
+
+        <label for="input2">Input 2 (number):</label>
+        <input type="number" id="input2" name="input2" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $input1 = $_POST['input1'];
+        $input2 = $_POST['input2'];
+
+        // Perform relational operations
+        $equal = $input1 == $input2;
+        $notEqual = $input1 != $input2;
+        $greater = $input1 > $input2;
+        $less = $input1 < $input2;
+        $greaterOrEqual = $input1 >= $input2;
+        $lessOrEqual = $input1 <= $input2;
+
+        echo "<p>Input 1: $input1</p>";
+        echo "<p>Input 2: $input2</p>";
+        echo "<p>Equal (==): " . ($equal ? "true" : "false") . "</p>";
+        echo "<p>Not Equal (!=): " . ($notEqual ? "true" : "false") . "</p>";
+        echo "<p>Greater Than (>): " . ($greater ? "true" : "false") . "</p>";
+        echo "<p>Less Than (<): " . ($less ? "true" : "false") . "</p>";
+        echo "<p>Greater Than or Equal (>=): " . ($greaterOrEqual ? "true" : "false") . "</p>";
+        echo "<p>Less Than or Equal (<=): " . ($lessOrEqual ? "true" : "false") . "</p>";
+    }
+    ?>
+</body>
+</html>
